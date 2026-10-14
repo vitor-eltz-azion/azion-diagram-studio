@@ -1,0 +1,114 @@
+{
+  "id": "object-delivery",
+  "title": "Media & object delivery",
+  "description": "Store assets once and deliver cached media to your users.",
+  "category": "Storage",
+  "canvasWidth": 1120,
+  "canvasHeight": 600,
+  "theme": "dark",
+  "grid": true,
+  "numbered": false,
+  "snap": true,
+  "gridSize": 8,
+  "notes": "Conceptual architecture. Configure authentication, caching rules, and origin access for your workload.",
+  "updatedAt": "",
+  "nodes": [
+    {
+      "id": "users",
+      "label": "Users",
+      "subtitle": "Media consumers",
+      "icon": "pi-users",
+      "x": 48,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "neutral",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "app",
+      "label": "Applications",
+      "subtitle": "Cache & delivery",
+      "icon": "ai-edge-application",
+      "x": 320,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "storage",
+      "label": "Object Storage",
+      "subtitle": "Images & video",
+      "icon": "ai-edge-storage",
+      "x": 640,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "upload",
+      "label": "Upload service",
+      "subtitle": "Your backend",
+      "icon": "pi-cloud",
+      "x": 896,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "neutral",
+      "shape": "card",
+      "locked": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "users-app",
+      "from": "users",
+      "to": "app",
+      "label": "HTTPS",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "app-storage",
+      "from": "app",
+      "to": "storage",
+      "label": "Cache miss",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "upload-storage",
+      "from": "upload",
+      "to": "storage",
+      "label": "Upload",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    }
+  ],
+  "groups": [
+    {
+      "id": "azion",
+      "label": "AZION PLATFORM",
+      "x": 272,
+      "y": 144,
+      "width": 544,
+      "height": 300,
+      "locked": false,
+      "moveChildren": true,
+      "tone": "neutral"
+    }
+  ]
+}

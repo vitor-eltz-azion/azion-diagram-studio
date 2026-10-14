@@ -1,0 +1,148 @@
+{
+  "id": "observability",
+  "title": "Logs & observability",
+  "description": "Stream application and security events into your analytics tools.",
+  "category": "Observability",
+  "canvasWidth": 1120,
+  "canvasHeight": 600,
+  "theme": "dark",
+  "grid": true,
+  "numbered": false,
+  "snap": true,
+  "gridSize": 8,
+  "notes": "Configure Data Stream sources and a supported destination for each stream. Dashed arrows represent asynchronous log delivery.",
+  "updatedAt": "",
+  "nodes": [
+    {
+      "id": "app",
+      "label": "Applications",
+      "subtitle": "Request logs",
+      "icon": "ai-edge-application",
+      "x": 96,
+      "y": 140,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "fw",
+      "label": "Firewall",
+      "subtitle": "Security events",
+      "icon": "ai-edge-firewall",
+      "x": 96,
+      "y": 348,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "stream",
+      "label": "Data Stream",
+      "subtitle": "Collect & forward",
+      "icon": "ai-data-stream",
+      "x": 464,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "siem",
+      "label": "Analytics / SIEM",
+      "subtitle": "Your destination",
+      "icon": "pi-chart-line",
+      "x": 856,
+      "y": 140,
+      "width": 152,
+      "height": 96,
+      "tone": "neutral",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "archive",
+      "label": "Log archive",
+      "subtitle": "Storage endpoint",
+      "icon": "pi-database",
+      "x": 856,
+      "y": 348,
+      "width": 152,
+      "height": 96,
+      "tone": "neutral",
+      "shape": "card",
+      "locked": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "app-stream",
+      "from": "app",
+      "to": "stream",
+      "label": "Logs",
+      "dashed": true,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "fw-stream",
+      "from": "fw",
+      "to": "stream",
+      "label": "Events",
+      "dashed": true,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "stream-siem",
+      "from": "stream",
+      "to": "siem",
+      "label": "Stream",
+      "dashed": true,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "stream-archive",
+      "from": "stream",
+      "to": "archive",
+      "label": "Archive",
+      "dashed": true,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    }
+  ],
+  "groups": [
+    {
+      "id": "azion",
+      "label": "AZION PLATFORM",
+      "x": 48,
+      "y": 104,
+      "width": 640,
+      "height": 388,
+      "locked": false,
+      "moveChildren": true,
+      "tone": "neutral"
+    },
+    {
+      "id": "tools",
+      "label": "YOUR OBSERVABILITY STACK",
+      "x": 816,
+      "y": 104,
+      "width": 248,
+      "height": 388,
+      "locked": false,
+      "moveChildren": true,
+      "tone": "neutral"
+    }
+  ]
+}

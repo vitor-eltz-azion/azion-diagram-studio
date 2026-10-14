@@ -1,0 +1,10 @@
+{
+  "source": "https://github.com/aziontech/webkit",
+  "iconsVersion": "4.1.1",
+  "paths": [
+    "packages/icons/src/svg-raw",
+    "packages/theme/src/tokens/primitives/colors",
+    "apps/fonts"
+  ],
+  "iconCount": 402
+}

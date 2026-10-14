@@ -1,0 +1,17 @@
+node_modules/
+.nuxt/
+.output/
+.artifacts/
+.DS_Store
+*.log
+#Paths added by Azion CLI
+.edge/
+.vulcan
+.open-next
+
+packages/*/dist/
+packages/*/*.tgz
+
+# Nuxt generate symlink and local-only reference material
+/dist
+references/

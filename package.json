@@ -1,0 +1,51 @@
+{
+  "dependencies": {
+    "@aziontech/icons": "^4.2.0",
+    "@aziontech/presets": "^1.1.2",
+    "@aziontech/theme": "^5.2.0",
+    "@aziontech/webkit": "^5.4.0",
+    "clsx": "^2.1.1",
+    "nuxt": "^4.5.2",
+    "opentype.js": "^1.3.4",
+    "tailwind-merge": "^3.6.0",
+    "vue": "^3.5.42",
+    "zod": "^4.6.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^24.13.4",
+    "@types/opentype.js": "^1.3.10",
+    "happy-dom": "^20.14.3",
+    "prettier": "^3.9.6",
+    "sharp": "^0.35.4",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.0",
+    "vitest": "^5.0.0",
+    "vue-tsc": "^3.3.11",
+    "eslint": "^10.12.0",
+    "stylelint": "^17.16.0",
+    "vue-eslint-parser": "^10.4.1",
+    "eslint-plugin-vuejs-accessibility": "^2.6.2",
+    "@typescript-eslint/parser": "^8.71.1",
+    "postcss-html": "^2.0.0",
+    "postcss-scss": "^4.0.9",
+    "husky": "^9.1.7"
+  },
+  "name": "azion-diagram-studio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev --host 127.0.0.1",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview --host 127.0.0.1",
+    "typecheck": "nuxt typecheck",
+    "test": "vitest run",
+    "postinstall": "nuxt prepare",
+    "cli:build": "npm run build --prefix packages/diagram-cli",
+    "cli:test": "npm run check --prefix packages/diagram-cli",
+    "cli:pack": "npm pack ./packages/diagram-cli",
+    "prepare": "husky"
+  }
+}

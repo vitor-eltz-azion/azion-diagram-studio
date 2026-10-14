@@ -1,0 +1,9 @@
+# Build output and caches: the same paths .gitignore keeps out of the repo.
+.nuxt/
+.output/
+.artifacts/
+.edge/
+.vulcan/
+.open-next/
+dist/
+packages/*/dist/

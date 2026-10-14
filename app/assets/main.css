@@ -1,0 +1,418 @@
+@import '../../src/webkit.css';
+@source '../';
+
+/* Self-hosted type. The theme's faces load from fonts.azion.com, which rejects cross-origin
+   requests from other hosts. Each face below repeats a theme descriptor exactly, so this later
+   declaration replaces it; every weight uses the local Regular file the app ships. */
+@font-face {
+  font-family: 'Sora';
+  src: url('./fonts/Sora-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Proto Mono';
+  src: url('./fonts/ProtoMono-Regular.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Proto Mono';
+  src: url('./fonts/ProtoMono-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Proto Mono';
+  src: url('./fonts/ProtoMono-Regular.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Proto Mono';
+  src: url('./fonts/ProtoMono-Regular.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto Mono';
+  src: url('./fonts/roboto-mono-regular.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto Mono';
+  src: url('./fonts/roboto-mono-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* The local files lack arrows and modifier-key glyphs (⌃ ⌘ ⌥ ⇧, which Kbd renders); take those
+   from the OS symbol fonts instead of letting the browser fall back to the remote theme faces. */
+@font-face {
+  font-family: 'Proto Mono';
+  src:
+    local('Apple Symbols'), local('Menlo Regular'), local('Segoe UI Symbol'), local('DejaVu Sans');
+  font-weight: 300;
+  font-style: normal;
+  unicode-range: U+2303, U+2318, U+2325, U+21E7;
+}
+@font-face {
+  font-family: 'Proto Mono';
+  src:
+    local('Apple Symbols'), local('Menlo Regular'), local('Segoe UI Symbol'), local('DejaVu Sans');
+  font-weight: 400;
+  font-style: normal;
+  unicode-range: U+2303, U+2318, U+2325, U+21E7;
+}
+@font-face {
+  font-family: 'Proto Mono';
+  src:
+    local('Apple Symbols'), local('Menlo Regular'), local('Segoe UI Symbol'), local('DejaVu Sans');
+  font-weight: 500;
+  font-style: normal;
+  unicode-range: U+2303, U+2318, U+2325, U+21E7;
+}
+@font-face {
+  font-family: 'Proto Mono';
+  src:
+    local('Apple Symbols'), local('Menlo Regular'), local('Segoe UI Symbol'), local('DejaVu Sans');
+  font-weight: 600;
+  font-style: normal;
+  unicode-range: U+2303, U+2318, U+2325, U+21E7;
+}
+
+@font-face {
+  font-family: 'Sora';
+  src:
+    local('Apple Symbols'), local('Menlo Regular'), local('Segoe UI Symbol'), local('DejaVu Sans');
+  font-weight: 100 900;
+  font-style: normal;
+  unicode-range: U+2190-21FF, U+2303, U+2318, U+2325;
+}
+@font-face {
+  font-family: 'Roboto Mono';
+  src:
+    local('Apple Symbols'), local('Menlo Regular'), local('Segoe UI Symbol'), local('DejaVu Sans');
+  font-weight: 300;
+  font-style: normal;
+  unicode-range: U+2190-21FF, U+2303, U+2318, U+2325;
+}
+@font-face {
+  font-family: 'Roboto Mono';
+  src:
+    local('Apple Symbols'), local('Menlo Regular'), local('Segoe UI Symbol'), local('DejaVu Sans');
+  font-weight: 400;
+  font-style: normal;
+  unicode-range: U+2190-21FF, U+2303, U+2318, U+2325;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+  }
+  body {
+    background: var(--bg-canvas);
+    color: var(--text-default);
+    font-family: var(--font-sans), sans-serif;
+  }
+}
+
+/* Original Azion SVG icons, inlined with namespaced IDs (no icon-font equivalent). */
+.studio-icon {
+  display: inline-flex;
+  flex: none;
+  vertical-align: middle;
+}
+.studio-icon > svg {
+  display: block;
+}
+
+/* Gallery grids. */
+.diagram-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--container-2xs), 1fr));
+  gap: var(--layout-group-gap);
+}
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--container-3xs), 1fr));
+  gap: var(--spacing-xs);
+}
+.diagram-preview {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: var(--border-width-default) solid var(--border-muted);
+  background: var(--bg-surface-raised);
+}
+.diagram-preview .diagram-canvas,
+.diagram-preview .diagram-canvas > svg {
+  height: 100%;
+}
+
+/* Design guidelines prose. */
+.guide-prose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  color: var(--text-default);
+}
+.guide-prose p,
+.guide-prose li {
+  @apply text-body-sm text-pretty;
+}
+.guide-prose ul:not([class]) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding-left: var(--spacing-md);
+  list-style: disc;
+}
+.guide-prose code,
+.export-summary dd {
+  font-family: var(--font-code), monospace;
+}
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--container-3xs), 1fr));
+  gap: var(--spacing-sm);
+}
+.swatches li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--spacing-sm);
+  align-items: center;
+}
+.swatch {
+  grid-row: span 2;
+  width: var(--spacing-xl);
+  aspect-ratio: 1;
+  border: var(--border-width-default) solid var(--border-default);
+  border-radius: var(--shape-elements);
+}
+.swatches code {
+  color: var(--text-muted);
+}
+
+/* Diagram canvas: the rendered SVG model, the product's own surface. */
+.diagram-canvas {
+  width: 100%;
+}
+.diagram-canvas > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.diagram-canvas.interactive {
+  touch-action: none;
+  user-select: none;
+}
+.diagram-canvas.pan-mode {
+  cursor: grab;
+}
+.diagram-canvas.connect-mode {
+  cursor: crosshair;
+}
+.diagram-canvas g[role='button']:focus-visible {
+  outline: none;
+}
+.diagram-canvas g[role='button']:focus-visible > rect:first-child {
+  stroke: var(--ring-color);
+  stroke-width: 3px;
+}
+
+/* Editor workbench: toolbar, then library | canvas | inspector. */
+.editor-toolbar {
+  display: flex;
+  flex: none;
+  align-items: center;
+  overflow-x: auto;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--layout-boundary-inline);
+  border-bottom: var(--border-width-default) solid var(--border-default);
+  background: var(--bg-surface);
+}
+.editor-toolbar > * {
+  flex-shrink: 0;
+}
+.editor-hint {
+  flex: 1;
+  min-width: 0;
+  margin-left: var(--spacing-sm);
+  overflow: hidden;
+  color: var(--text-muted);
+  @apply text-body-xs;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.editor-workspace {
+  display: grid;
+  flex: 1;
+  grid-template-columns: var(--container-3xs) minmax(0, 1fr) var(--container-xs);
+  min-height: 0;
+}
+.editor-workspace[data-library='hidden'] {
+  grid-template-columns: minmax(0, 1fr) var(--container-xs);
+}
+.editor-library {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  min-height: 0;
+  overflow: auto;
+  padding: var(--spacing-md);
+  border-right: var(--border-width-default) solid var(--border-default);
+  background: var(--bg-surface);
+}
+.editor-canvas {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+.canvas-viewport {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  min-height: 0;
+  overflow: auto;
+  padding: var(--spacing-lg);
+  background: var(--bg-canvas);
+}
+.canvas-paper {
+  flex: none;
+  margin: auto;
+  overflow: hidden;
+  border: var(--border-width-default) solid var(--border-default);
+  border-radius: var(--shape-card);
+  box-shadow: var(--shadow-lg);
+  transform-origin: center;
+}
+.canvas-empty {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--spacing-lg);
+  pointer-events: none;
+}
+.canvas-empty-card {
+  max-width: var(--container-sm);
+  padding: var(--spacing-md);
+  border-radius: var(--shape-card);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-md);
+  pointer-events: auto;
+}
+.canvas-status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xxs) var(--spacing-md);
+  border-top: var(--border-width-default) solid var(--border-default);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  @apply text-body-xs;
+}
+.canvas-notes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxs);
+  max-height: 25%;
+  overflow: auto;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-top: var(--border-width-default) solid var(--border-muted);
+  background: var(--bg-surface);
+}
+.editor-inspector {
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  border-left: var(--border-width-default) solid var(--border-default);
+  background: var(--bg-surface);
+}
+.prompt-preview {
+  @apply text-body-xs;
+  max-height: var(--container-sm);
+  overflow: auto;
+  padding: var(--spacing-sm);
+  border: var(--border-width-default) solid var(--border-default);
+  border-radius: var(--shape-elements);
+  background: var(--bg-surface-raised);
+  color: var(--text-default);
+  font-family: var(--font-code), monospace;
+  white-space: pre-wrap;
+}
+.prompt-preview:focus-visible {
+  outline: 2px solid var(--ring-color);
+  outline-offset: 2px;
+}
+.export-summary {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--spacing-xs) var(--spacing-md);
+  padding: var(--spacing-sm);
+  border-radius: var(--shape-elements);
+  background: var(--bg-surface-raised);
+  color: var(--text-muted);
+  @apply text-body-xs;
+}
+.export-summary dd {
+  color: var(--text-default);
+  text-align: right;
+}
+
+/* Below a laptop the library becomes an overlay rail; below a tablet the panes stack. */
+@media (max-width: 1279px) {
+  .editor-workspace,
+  .editor-workspace[data-library='hidden'] {
+    position: relative;
+    grid-template-columns: minmax(0, 1fr) var(--container-xs);
+  }
+  .editor-library {
+    position: absolute;
+    inset: 0 auto 0 0;
+    z-index: 10;
+    width: var(--container-3xs);
+    box-shadow: var(--shadow-lg);
+  }
+}
+@media (max-width: 767px) {
+  .editor-workspace,
+  .editor-workspace[data-library='hidden'] {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+  }
+  .editor-canvas {
+    flex: none;
+  }
+  .canvas-viewport {
+    flex: none;
+    height: 60dvh;
+  }
+  .canvas-notes {
+    max-height: none;
+  }
+  .editor-inspector {
+    overflow: visible;
+    border-top: var(--border-width-default) solid var(--border-default);
+    border-left: 0;
+  }
+  .editor-hint {
+    display: none;
+  }
+}

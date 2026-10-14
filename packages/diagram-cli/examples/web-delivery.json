@@ -1,0 +1,148 @@
+{
+  "id": "web-delivery",
+  "title": "Secure web delivery",
+  "description": "Protect requests, cache content, and connect your origins through Azion.",
+  "category": "Delivery",
+  "canvasWidth": 1120,
+  "canvasHeight": 600,
+  "theme": "dark",
+  "grid": true,
+  "numbered": false,
+  "snap": true,
+  "gridSize": 8,
+  "notes": "Conceptual architecture. Configure authentication, caching rules, and origin access for your workload.",
+  "updatedAt": "",
+  "nodes": [
+    {
+      "id": "users",
+      "label": "Users",
+      "subtitle": "Web & mobile",
+      "icon": "pi-users",
+      "x": 48,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "neutral",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "firewall",
+      "label": "Firewall",
+      "subtitle": "Inspect requests",
+      "icon": "ai-edge-firewall",
+      "x": 288,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "app",
+      "label": "Applications",
+      "subtitle": "Cache & route",
+      "icon": "ai-edge-application",
+      "x": 528,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "origin",
+      "label": "Origin server",
+      "subtitle": "Dynamic content",
+      "icon": "pi-server",
+      "x": 856,
+      "y": 140,
+      "width": 152,
+      "height": 96,
+      "tone": "neutral",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "storage",
+      "label": "Object Storage",
+      "subtitle": "Static assets",
+      "icon": "ai-edge-storage",
+      "x": 856,
+      "y": 348,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "users-firewall",
+      "from": "users",
+      "to": "firewall",
+      "label": "HTTPS",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "firewall-app",
+      "from": "firewall",
+      "to": "app",
+      "label": "Allowed",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "app-origin",
+      "from": "app",
+      "to": "origin",
+      "label": "Cache miss",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "app-storage",
+      "from": "app",
+      "to": "storage",
+      "label": "Static assets",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    }
+  ],
+  "groups": [
+    {
+      "id": "azion",
+      "label": "AZION PLATFORM",
+      "x": 248,
+      "y": 104,
+      "width": 472,
+      "height": 388,
+      "locked": false,
+      "moveChildren": true,
+      "tone": "neutral"
+    },
+    {
+      "id": "origins",
+      "label": "CONTENT SOURCES",
+      "x": 816,
+      "y": 104,
+      "width": 248,
+      "height": 388,
+      "locked": false,
+      "moveChildren": true,
+      "tone": "neutral"
+    }
+  ]
+}

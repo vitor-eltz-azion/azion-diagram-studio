@@ -1,0 +1,68 @@
+{
+  "name": "azion-diagram",
+  "version": "0.1.0",
+  "description": "Create, validate, and render Azion architecture diagrams from agent-friendly JSON.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Vitor Eltz",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitor-eltz-azion/azion-diagram-studio.git",
+    "directory": "packages/diagram-cli"
+  },
+  "homepage": "https://github.com/vitor-eltz-azion/azion-diagram-studio/tree/main/packages/diagram-cli#readme",
+  "bugs": {
+    "url": "https://github.com/vitor-eltz-azion/azion-diagram-studio/issues"
+  },
+  "keywords": [
+    "azion",
+    "architecture",
+    "diagram",
+    "cli",
+    "svg",
+    "png",
+    "json-schema",
+    "ai-agents"
+  ],
+  "bin": {
+    "azion-diagram": "dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./schema": "./diagram.schema.json"
+  },
+  "files": [
+    "dist",
+    "assets",
+    "examples",
+    "diagram.schema.json",
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node scripts/build-schema.mjs",
+    "test": "node --test test/*.test.mjs",
+    "prepack": "npm run build",
+    "check": "npm run build && npm test"
+  },
+  "dependencies": {
+    "opentype.js": "1.3.4",
+    "@resvg/resvg-js": "^2.6.2",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.4",
+    "@types/opentype.js": "^1.3.10",
+    "typescript": "^5.9.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

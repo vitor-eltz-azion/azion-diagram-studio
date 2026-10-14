@@ -1,0 +1,95 @@
+{
+  "name": "azion-diagram",
+  "bucket": "diagram",
+  "preset": "nuxt",
+  "env": "production",
+  "prefix": "20261008181525",
+  "rotate-prefix": true,
+  "not-first-run": true,
+  "function": [
+    {
+      "id": 56163,
+      "name": "azion-diagram",
+      "file": "",
+      "args": "azion/args.json",
+      "instance-id": 50131,
+      "instance-name": "",
+      "cache-id": 0
+    }
+  ],
+  "application": {
+    "id": 1789159559,
+    "name": "azion-diagram"
+  },
+  "domain": {
+    "id": 0,
+    "name": "__DEFAULT__",
+    "domain_name": "",
+    "url": ""
+  },
+  "rt-purge": {
+    "purge_on_publish": true
+  },
+  "origin": null,
+  "rules-engine": {
+    "created": false,
+    "rules": [
+      {
+        "id": 704776,
+        "name": "Nuxt Static Assets and set cache policy",
+        "phase": "request"
+      },
+      {
+        "id": 704777,
+        "name": "Redirect to index.html for Subpaths",
+        "phase": "request"
+      },
+      {
+        "id": 704778,
+        "name": "Redirect to index.html",
+        "phase": "request"
+      },
+      {
+        "id": 704779,
+        "name": "Execute Nuxt Function when starts with /api/_content",
+        "phase": "request"
+      },
+      {
+        "id": 704780,
+        "name": "Deliver Static Assets and set cache policy",
+        "phase": "request"
+      },
+      {
+        "id": 704781,
+        "name": "Execute Nuxt Function",
+        "phase": "request"
+      }
+    ]
+  },
+  "cache-settings": [
+    {
+      "id": 340966,
+      "name": "azion-diagram"
+    }
+  ],
+  "workloads": {
+    "id": 1789158917,
+    "name": "azion-diagram",
+    "domains": [
+      "diagramstudio.azion.app"
+    ],
+    "url": "https://col9wmqsuyq.map.azionedge.net",
+    "deployment_id": [
+      {
+        "id": 315596,
+        "name": "azion-diagram"
+      }
+    ]
+  },
+  "connectors": [
+    {
+      "id": 125607,
+      "name": "azion-diagram"
+    }
+  ]
+}

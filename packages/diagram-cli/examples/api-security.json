@@ -1,0 +1,137 @@
+{
+  "id": "api-security",
+  "title": "API protection",
+  "description": "Inspect API traffic before it reaches your application and origin.",
+  "category": "Security",
+  "canvasWidth": 1120,
+  "canvasHeight": 600,
+  "theme": "dark",
+  "grid": true,
+  "numbered": false,
+  "snap": true,
+  "gridSize": 8,
+  "notes": "Firewall inspection rejects disallowed requests. Only allowed traffic continues. Configure WAF policies and application authentication separately.",
+  "updatedAt": "",
+  "nodes": [
+    {
+      "id": "users",
+      "label": "API clients",
+      "subtitle": "REST / GraphQL",
+      "icon": "pi-code",
+      "x": 48,
+      "y": 140,
+      "width": 152,
+      "height": 96,
+      "tone": "neutral",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "bots",
+      "label": "Automated traffic",
+      "subtitle": "Untrusted requests",
+      "icon": "pi-cog",
+      "x": 48,
+      "y": 348,
+      "width": 152,
+      "height": 96,
+      "tone": "neutral",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "fw",
+      "label": "Firewall",
+      "subtitle": "WAF rules",
+      "icon": "ai-edge-firewall",
+      "x": 328,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "app",
+      "label": "Applications",
+      "subtitle": "Request routing",
+      "icon": "ai-edge-application",
+      "x": 592,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "api",
+      "label": "API origin",
+      "subtitle": "Your services",
+      "icon": "pi-server",
+      "x": 896,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "neutral",
+      "shape": "card",
+      "locked": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "users-fw",
+      "from": "users",
+      "to": "fw",
+      "label": "HTTPS",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "bots-fw",
+      "from": "bots",
+      "to": "fw",
+      "label": "Inspect",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "fw-app",
+      "from": "fw",
+      "to": "app",
+      "label": "Allowed",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "app-api",
+      "from": "app",
+      "to": "api",
+      "label": "Forward",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    }
+  ],
+  "groups": [
+    {
+      "id": "azion",
+      "label": "AZION SECURITY & DELIVERY",
+      "x": 280,
+      "y": 144,
+      "width": 504,
+      "height": 300,
+      "locked": false,
+      "moveChildren": true,
+      "tone": "neutral"
+    }
+  ]
+}
