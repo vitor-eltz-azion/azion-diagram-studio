@@ -25,6 +25,7 @@ export const productNames: Record<string, string> = {
   'ai-edge-firewall': 'Firewall',
   'ai-edge-storage': 'Object Storage',
   'ai-edge-sql': 'SQL Database',
+  'ai-edge-ai': 'AI Inference',
   'ai-edge-kv': 'KV Store',
   'ai-edge-dns': 'DNS',
   'ai-digital-certificates': 'Certificate Manager',

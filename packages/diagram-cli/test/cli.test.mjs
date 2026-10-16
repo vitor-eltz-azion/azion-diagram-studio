@@ -18,7 +18,7 @@ const cli = (args, input) =>
   spawnSync(process.execPath, [executable, ...args], { encoding: 'utf8', input })
 
 test('agents can discover templates, icons, and schema', () => {
-  assert.equal(JSON.parse(cli(['templates']).stdout).length, 6)
+  assert.equal(JSON.parse(cli(['templates']).stdout).length, 17)
   assert.ok(
     JSON.parse(cli(['icons', '--search', 'application']).stdout).some(
       (i) => i.name === 'ai-edge-application'
@@ -36,8 +36,8 @@ test('every template validates and renders in both themes without external resou
       assert.match(svg, /azion-diagram-model/)
       assert.ok(svg.includes(`aria-label="${escapeXml(d.title)}"`))
       const png = await renderPng(d, 1)
-      assert.equal(Buffer.from(png).readUInt32BE(16), 1120)
-      assert.equal(Buffer.from(png).readUInt32BE(20), 600)
+      assert.equal(Buffer.from(png).readUInt32BE(16), d.canvasWidth)
+      assert.equal(Buffer.from(png).readUInt32BE(20), d.canvasHeight)
     }
 })
 test('create → edit → validate → prompt → all exports, with overwrite protection', async () => {

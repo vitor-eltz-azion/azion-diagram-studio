@@ -1,0 +1,137 @@
+{
+  "id": "ai-content-moderation",
+  "title": "AI content moderation",
+  "description": "Screen user uploads with a vision model in AI Inference before Functions store approved media.",
+  "category": "AI",
+  "canvasWidth": 1120,
+  "canvasHeight": 600,
+  "theme": "dark",
+  "grid": true,
+  "numbered": false,
+  "snap": true,
+  "gridSize": 8,
+  "notes": "Conceptual architecture. Functions send each upload to a vision language model in AI Inference, optionally adapted with LoRA, and store only approved media. Define moderation policies and review flows for your workload.",
+  "updatedAt": "2026-10-16T12:24:43.275Z",
+  "nodes": [
+    {
+      "id": "users",
+      "label": "Users",
+      "subtitle": "Image uploads",
+      "icon": "pi-images",
+      "x": 56,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "neutral",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "app",
+      "label": "Applications",
+      "subtitle": "Upload routing",
+      "icon": "ai-edge-application",
+      "x": 296,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "fn",
+      "label": "Functions",
+      "subtitle": "Moderation logic",
+      "icon": "ai-edge-functions",
+      "x": 536,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "ai",
+      "label": "AI Inference",
+      "subtitle": "Vision model",
+      "icon": "ai-edge-ai",
+      "x": 864,
+      "y": 140,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "storage",
+      "label": "Object Storage",
+      "subtitle": "Approved media",
+      "icon": "ai-edge-storage",
+      "x": 864,
+      "y": 348,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "users-app",
+      "from": "users",
+      "to": "app",
+      "label": "Upload",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "app-fn",
+      "from": "app",
+      "to": "fn",
+      "label": "Rules Engine",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "fn-ai",
+      "from": "fn",
+      "to": "ai",
+      "label": "Classify",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "fn-storage",
+      "from": "fn",
+      "to": "storage",
+      "label": "Write",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    }
+  ],
+  "groups": [
+    {
+      "id": "azion",
+      "label": "AZION PLATFORM",
+      "x": 256,
+      "y": 104,
+      "width": 800,
+      "height": 388,
+      "locked": false,
+      "moveChildren": true,
+      "tone": "neutral"
+    }
+  ]
+}

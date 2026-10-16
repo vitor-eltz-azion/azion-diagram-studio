@@ -1,0 +1,114 @@
+{
+  "id": "ai-inference-api",
+  "title": "Serverless inference API",
+  "description": "Serve an OpenAI-compatible model API through Firewall and Applications without managing GPUs.",
+  "category": "AI",
+  "canvasWidth": 1120,
+  "canvasHeight": 600,
+  "theme": "dark",
+  "grid": true,
+  "numbered": false,
+  "snap": true,
+  "gridSize": 8,
+  "notes": "Conceptual architecture. AI Inference exposes an OpenAI-compatible API and scales without GPU clusters. Configure WAF rules, API authentication, and the models you serve.",
+  "updatedAt": "2026-10-16T12:24:43.231Z",
+  "nodes": [
+    {
+      "id": "clients",
+      "label": "API clients",
+      "subtitle": "OpenAI-compatible SDK",
+      "icon": "pi-code",
+      "x": 104,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "neutral",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "fw",
+      "label": "Firewall",
+      "subtitle": "WAF rules",
+      "icon": "ai-edge-firewall",
+      "x": 344,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "app",
+      "label": "Applications",
+      "subtitle": "Request routing",
+      "icon": "ai-edge-application",
+      "x": 584,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "ai",
+      "label": "AI Inference",
+      "subtitle": "LLMs & embeddings",
+      "icon": "ai-edge-ai",
+      "x": 824,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "clients-fw",
+      "from": "clients",
+      "to": "fw",
+      "label": "HTTPS",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "fw-app",
+      "from": "fw",
+      "to": "app",
+      "label": "Allowed",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "app-ai",
+      "from": "app",
+      "to": "ai",
+      "label": "Inference",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    }
+  ],
+  "groups": [
+    {
+      "id": "azion",
+      "label": "AZION PLATFORM",
+      "x": 304,
+      "y": 104,
+      "width": 712,
+      "height": 388,
+      "locked": false,
+      "moveChildren": true,
+      "tone": "neutral"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "image-optimization",
+  "title": "On-demand images from storage",
+  "description": "Store original images once in Object Storage and deliver resized, converted variants with Image Processor.",
+  "category": "Storage",
+  "theme": "dark",
+  "numbered": false,
+  "notes": "Conceptual architecture. Image Processor runs as an Applications module and transforms images through URL parameters, including WebP and AVIF conversion. Processed variants are cached. Configure Rules Engine, image parameters, and cache policies for your workload.",
+  "nodes": [
+    { "id": "users", "label": "Users", "subtitle": "Web & mobile", "icon": "pi-users", "col": 0 },
+    { "id": "app", "label": "Applications", "subtitle": "Cache & route", "icon": "ai-edge-application", "col": 1 },
+    { "id": "images", "label": "Image Processor", "subtitle": "Resize & convert", "icon": "pi-image", "col": 2 },
+    { "id": "storage", "label": "Object Storage", "subtitle": "Original images", "icon": "ai-edge-storage", "col": 3 }
+  ],
+  "edges": [
+    { "from": "users", "to": "app", "label": "HTTPS" },
+    { "from": "app", "to": "images", "label": "Transform" },
+    { "from": "images", "to": "storage", "label": "Read original" }
+  ],
+  "groups": [
+    { "id": "azion", "label": "AZION PLATFORM", "members": ["app", "images", "storage"] }
+  ]
+}

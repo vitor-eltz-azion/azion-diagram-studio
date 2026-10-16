@@ -1,0 +1,80 @@
+{
+  "id": "read-heavy-api",
+  "title": "Read-heavy API",
+  "description": "Answer API reads from KV Store first and fall back to SQL Database read replicas.",
+  "category": "Data",
+  "theme": "dark",
+  "numbered": true,
+  "notes": "Conceptual architecture. Functions look up hot keys in KV Store and query SQL Database on a miss, then write the result back with a TTL. SQL Database serves reads from replicas and writes go to the main instance. Configure cache policies and TTLs for your workload.",
+  "nodes": [
+    {
+      "id": "clients",
+      "label": "API clients",
+      "subtitle": "Web & mobile apps",
+      "icon": "pi-code",
+      "col": 0
+    },
+    {
+      "id": "app",
+      "label": "Applications",
+      "subtitle": "Cache GET responses",
+      "icon": "ai-edge-application",
+      "col": 1
+    },
+    {
+      "id": "fn",
+      "label": "Functions",
+      "subtitle": "API logic",
+      "icon": "ai-edge-functions",
+      "col": 2
+    },
+    {
+      "id": "kv",
+      "label": "KV Store",
+      "subtitle": "Hot-key cache",
+      "icon": "ai-edge-kv",
+      "col": 3
+    },
+    {
+      "id": "sql",
+      "label": "SQL Database",
+      "subtitle": "Read replicas",
+      "icon": "ai-edge-sql",
+      "col": 3
+    }
+  ],
+  "edges": [
+    {
+      "from": "clients",
+      "to": "app",
+      "label": "HTTPS"
+    },
+    {
+      "from": "app",
+      "to": "fn",
+      "label": "Rules Engine"
+    },
+    {
+      "from": "fn",
+      "to": "kv",
+      "label": "Cache lookup"
+    },
+    {
+      "from": "fn",
+      "to": "sql",
+      "label": "Query on miss"
+    }
+  ],
+  "groups": [
+    {
+      "id": "azion",
+      "label": "AZION PLATFORM",
+      "members": [
+        "app",
+        "fn",
+        "kv",
+        "sql"
+      ]
+    }
+  ]
+}

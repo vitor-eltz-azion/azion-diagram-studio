@@ -1,0 +1,171 @@
+{
+  "id": "ai-agent-tools",
+  "title": "AI agent with tools and memory",
+  "description": "Run an agent loop in Functions that calls AI Inference, uses your APIs as tools, and keeps memory in KV Store.",
+  "category": "AI",
+  "canvasWidth": 1424,
+  "canvasHeight": 600,
+  "theme": "dark",
+  "grid": true,
+  "numbered": false,
+  "snap": true,
+  "gridSize": 8,
+  "notes": "Conceptual architecture. The agent loop runs in Functions and calls AI Inference through its OpenAI-compatible API. KV Store keeps session memory. Define the tools, authentication, and memory retention for your workload.",
+  "updatedAt": "2026-10-16T12:24:43.108Z",
+  "nodes": [
+    {
+      "id": "users",
+      "label": "Users",
+      "subtitle": "Chat & apps",
+      "icon": "pi-comments",
+      "x": 48,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "neutral",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "app",
+      "label": "Applications",
+      "subtitle": "Request routing",
+      "icon": "ai-edge-application",
+      "x": 288,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "agent",
+      "label": "Functions",
+      "subtitle": "Agent loop",
+      "icon": "ai-edge-functions",
+      "x": 528,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "ai",
+      "label": "AI Inference",
+      "subtitle": "LLM & tool calls",
+      "icon": "ai-edge-ai",
+      "x": 856,
+      "y": 140,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "kv",
+      "label": "KV Store",
+      "subtitle": "Session memory",
+      "icon": "ai-edge-kv",
+      "x": 856,
+      "y": 348,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "tools",
+      "label": "Tools & APIs",
+      "subtitle": "Your services",
+      "icon": "pi-wrench",
+      "x": 1184,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "neutral",
+      "shape": "card",
+      "locked": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "agent-tools",
+      "from": "agent",
+      "to": "tools",
+      "label": "Tool call",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "users-app",
+      "from": "users",
+      "to": "app",
+      "label": "HTTPS",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "app-agent",
+      "from": "app",
+      "to": "agent",
+      "label": "Rules Engine",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "agent-ai",
+      "from": "agent",
+      "to": "ai",
+      "label": "Prompt",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "agent-kv",
+      "from": "agent",
+      "to": "kv",
+      "label": "Read / write",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    }
+  ],
+  "groups": [
+    {
+      "id": "azion",
+      "label": "AZION PLATFORM",
+      "x": 248,
+      "y": 104,
+      "width": 800,
+      "height": 388,
+      "locked": false,
+      "moveChildren": true,
+      "tone": "neutral"
+    },
+    {
+      "id": "backend",
+      "label": "YOUR BACKEND",
+      "x": 1144,
+      "y": 104,
+      "width": 232,
+      "height": 388,
+      "locked": false,
+      "moveChildren": true,
+      "tone": "neutral"
+    }
+  ]
+}

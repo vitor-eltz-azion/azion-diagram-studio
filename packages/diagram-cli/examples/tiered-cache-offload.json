@@ -1,0 +1,125 @@
+{
+  "id": "tiered-cache-offload",
+  "title": "Tiered cache origin offload",
+  "description": "Add a Tiered Cache layer between Applications and your origin so fewer cache misses reach it.",
+  "category": "Delivery",
+  "canvasWidth": 1120,
+  "canvasHeight": 600,
+  "theme": "dark",
+  "grid": true,
+  "numbered": false,
+  "snap": true,
+  "gridSize": 8,
+  "notes": "Conceptual architecture. Applications serve cached content with your TTLs and can serve stale content when the origin fails. Tiered Cache adds a cache layer for long-lived assets. Configure cache policies, cache keys, and origin access for your workload.",
+  "updatedAt": "2026-10-16T17:41:05.258Z",
+  "nodes": [
+    {
+      "id": "users",
+      "label": "Users",
+      "subtitle": "Global audience",
+      "icon": "pi-globe",
+      "x": 56,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "neutral",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "app",
+      "label": "Applications",
+      "subtitle": "Cache & TTLs",
+      "icon": "ai-edge-application",
+      "x": 296,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "tiered",
+      "label": "Tiered Cache",
+      "subtitle": "Cache layer",
+      "icon": "ai-tiered-cache",
+      "x": 536,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "origin",
+      "label": "Origin server",
+      "subtitle": "Your content",
+      "icon": "pi-server",
+      "x": 864,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "neutral",
+      "shape": "card",
+      "locked": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "users-app",
+      "from": "users",
+      "to": "app",
+      "label": "HTTPS",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "app-tiered",
+      "from": "app",
+      "to": "tiered",
+      "label": "Cache miss",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "tiered-origin",
+      "from": "tiered",
+      "to": "origin",
+      "label": "Origin fetch",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    }
+  ],
+  "groups": [
+    {
+      "id": "azion",
+      "label": "AZION PLATFORM",
+      "x": 256,
+      "y": 104,
+      "width": 472,
+      "height": 388,
+      "locked": false,
+      "moveChildren": true,
+      "tone": "neutral"
+    },
+    {
+      "id": "origins",
+      "label": "CONTENT SOURCES",
+      "x": 824,
+      "y": 104,
+      "width": 232,
+      "height": 388,
+      "locked": false,
+      "moveChildren": true,
+      "tone": "neutral"
+    }
+  ]
+}

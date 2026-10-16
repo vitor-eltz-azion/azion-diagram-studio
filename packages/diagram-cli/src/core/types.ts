@@ -1,4 +1,4 @@
-export type Category = 'Delivery' | 'Compute' | 'Storage' | 'Security' | 'Observability'
+export type Category = 'Delivery' | 'Compute' | 'Storage' | 'Security' | 'Observability' | 'Data' | 'AI'
 export type NodeTone = 'azion' | 'neutral' | 'accent'
 export type NodeShape = 'card' | 'rectangle' | 'ellipse' | 'diamond' | 'text'
 export interface DiagramNode {

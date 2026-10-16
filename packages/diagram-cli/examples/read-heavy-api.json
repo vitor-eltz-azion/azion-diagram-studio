@@ -1,0 +1,137 @@
+{
+  "id": "read-heavy-api",
+  "title": "Read-heavy API",
+  "description": "Answer API reads from KV Store first and fall back to SQL Database read replicas.",
+  "category": "Data",
+  "canvasWidth": 1120,
+  "canvasHeight": 600,
+  "theme": "dark",
+  "grid": true,
+  "numbered": true,
+  "snap": true,
+  "gridSize": 8,
+  "notes": "Conceptual architecture. Functions look up hot keys in KV Store and query SQL Database on a miss, then write the result back with a TTL. SQL Database serves reads from replicas and writes go to the main instance. Configure cache policies and TTLs for your workload.",
+  "updatedAt": "",
+  "nodes": [
+    {
+      "id": "clients",
+      "label": "API clients",
+      "subtitle": "Web & mobile apps",
+      "icon": "pi-code",
+      "x": 48,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "neutral",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "app",
+      "label": "Applications",
+      "subtitle": "Cache GET responses",
+      "icon": "ai-edge-application",
+      "x": 288,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "fn",
+      "label": "Functions",
+      "subtitle": "API logic",
+      "icon": "ai-edge-functions",
+      "x": 528,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "kv",
+      "label": "KV Store",
+      "subtitle": "Hot-key cache",
+      "icon": "ai-edge-kv",
+      "x": 856,
+      "y": 140,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "sql",
+      "label": "SQL Database",
+      "subtitle": "Read replicas",
+      "icon": "ai-edge-sql",
+      "x": 856,
+      "y": 348,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "clients-app",
+      "from": "clients",
+      "to": "app",
+      "label": "HTTPS",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "app-fn",
+      "from": "app",
+      "to": "fn",
+      "label": "Rules Engine",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "fn-kv",
+      "from": "fn",
+      "to": "kv",
+      "label": "Cache lookup",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "fn-sql",
+      "from": "fn",
+      "to": "sql",
+      "label": "Query on miss",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    }
+  ],
+  "groups": [
+    {
+      "id": "azion",
+      "label": "AZION PLATFORM",
+      "x": 248,
+      "y": 104,
+      "width": 816,
+      "height": 388,
+      "locked": false,
+      "moveChildren": true,
+      "tone": "neutral"
+    }
+  ]
+}

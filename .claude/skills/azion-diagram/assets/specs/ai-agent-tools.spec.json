@@ -1,0 +1,28 @@
+{
+  "id": "ai-agent-tools",
+  "title": "AI agent with tools and memory",
+  "description": "Run an agent loop in Functions that calls AI Inference, uses your APIs as tools, and keeps memory in KV Store.",
+  "category": "AI",
+  "theme": "dark",
+  "numbered": false,
+  "notes": "Conceptual architecture. The agent loop runs in Functions and calls AI Inference through its OpenAI-compatible API. KV Store keeps session memory. Define the tools, authentication, and memory retention for your workload.",
+  "nodes": [
+    { "id": "users", "label": "Users", "subtitle": "Chat & apps", "icon": "pi-comments", "col": 0 },
+    { "id": "app", "label": "Applications", "subtitle": "Request routing", "icon": "ai-edge-application", "col": 1 },
+    { "id": "agent", "label": "Functions", "subtitle": "Agent loop", "icon": "ai-edge-functions", "col": 2 },
+    { "id": "ai", "label": "AI Inference", "subtitle": "LLM & tool calls", "icon": "ai-edge-ai", "col": 3 },
+    { "id": "kv", "label": "KV Store", "subtitle": "Session memory", "icon": "ai-edge-kv", "col": 3 },
+    { "id": "tools", "label": "Tools & APIs", "subtitle": "Your services", "icon": "pi-wrench", "col": 4 }
+  ],
+  "edges": [
+    { "from": "users", "to": "app", "label": "HTTPS" },
+    { "from": "app", "to": "agent", "label": "Rules Engine" },
+    { "from": "agent", "to": "ai", "label": "Prompt" },
+    { "from": "agent", "to": "kv", "label": "Read / write" },
+    { "from": "agent", "to": "tools", "label": "Tool call" }
+  ],
+  "groups": [
+    { "id": "azion", "label": "AZION PLATFORM", "members": ["app", "agent", "ai", "kv"] },
+    { "id": "backend", "label": "YOUR BACKEND", "members": ["tools"] }
+  ]
+}

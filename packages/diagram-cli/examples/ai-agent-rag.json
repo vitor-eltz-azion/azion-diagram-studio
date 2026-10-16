@@ -1,0 +1,160 @@
+{
+  "id": "ai-agent-rag",
+  "title": "Secure AI agent with RAG",
+  "description": "Protect an agent behind Firewall and ground its answers in your documents with SQL Database vector search.",
+  "category": "AI",
+  "canvasWidth": 1120,
+  "canvasHeight": 600,
+  "theme": "dark",
+  "grid": true,
+  "numbered": false,
+  "snap": true,
+  "gridSize": 8,
+  "notes": "Conceptual architecture. Source documents live in Object Storage; their embeddings, generated with AI Inference, are indexed in SQL Database vector search. Configure WAF rules, document ingestion, and access control for your workload.",
+  "updatedAt": "2026-10-16T12:24:43.173Z",
+  "nodes": [
+    {
+      "id": "users",
+      "label": "Users",
+      "subtitle": "Assistant clients",
+      "icon": "pi-users",
+      "x": 56,
+      "y": 140,
+      "width": 152,
+      "height": 96,
+      "tone": "neutral",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "fw",
+      "label": "Firewall",
+      "subtitle": "WAF rules",
+      "icon": "ai-edge-firewall",
+      "x": 296,
+      "y": 140,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "agent",
+      "label": "Functions",
+      "subtitle": "Agent & retrieval",
+      "icon": "ai-edge-functions",
+      "x": 536,
+      "y": 140,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "ai",
+      "label": "AI Inference",
+      "subtitle": "Embeddings & LLM",
+      "icon": "ai-edge-ai",
+      "x": 864,
+      "y": 140,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "sql",
+      "label": "SQL Database",
+      "subtitle": "Vector search",
+      "icon": "ai-edge-sql",
+      "x": 864,
+      "y": 348,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "docs",
+      "label": "Object Storage",
+      "subtitle": "Source documents",
+      "icon": "ai-edge-storage",
+      "x": 536,
+      "y": 348,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "users-fw",
+      "from": "users",
+      "to": "fw",
+      "label": "HTTPS",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "fw-agent",
+      "from": "fw",
+      "to": "agent",
+      "label": "Rules Engine",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "agent-ai",
+      "from": "agent",
+      "to": "ai",
+      "label": "Generate",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "agent-sql",
+      "from": "agent",
+      "to": "sql",
+      "label": "Query",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "agent-docs",
+      "from": "agent",
+      "to": "docs",
+      "label": "Read",
+      "dashed": false,
+      "routing": "straight",
+      "arrow": "end",
+      "locked": false
+    }
+  ],
+  "groups": [
+    {
+      "id": "azion",
+      "label": "AZION PLATFORM",
+      "x": 256,
+      "y": 104,
+      "width": 800,
+      "height": 388,
+      "locked": false,
+      "moveChildren": true,
+      "tone": "neutral"
+    }
+  ]
+}

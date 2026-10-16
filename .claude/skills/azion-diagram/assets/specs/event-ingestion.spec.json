@@ -1,0 +1,92 @@
+{
+  "id": "event-ingestion",
+  "title": "Event ingestion & analytics",
+  "description": "Collect app and device events with Functions and store them in SQL Database for queries.",
+  "category": "Data",
+  "theme": "dark",
+  "numbered": false,
+  "notes": "Conceptual architecture. Functions validate events, enforce per-source rate limits with KV Store counters, and insert rows into SQL Database; dashboards read through a query endpoint on the same Functions. Writes go to the main instance and reads can use replicas. Size batches and retention for your workload.",
+  "nodes": [
+    {
+      "id": "sources",
+      "label": "Apps & devices",
+      "subtitle": "Event sources",
+      "icon": "pi-mobile",
+      "col": 0
+    },
+    {
+      "id": "dashboard",
+      "label": "Dashboard",
+      "subtitle": "Your analytics UI",
+      "icon": "pi-chart-bar",
+      "col": 0
+    },
+    {
+      "id": "app",
+      "label": "Applications",
+      "subtitle": "Request routing",
+      "icon": "ai-edge-application",
+      "col": 1
+    },
+    {
+      "id": "fn",
+      "label": "Functions",
+      "subtitle": "Validate & ingest",
+      "icon": "ai-edge-functions",
+      "col": 2
+    },
+    {
+      "id": "sql",
+      "label": "SQL Database",
+      "subtitle": "Event tables",
+      "icon": "ai-edge-sql",
+      "col": 3
+    },
+    {
+      "id": "kv",
+      "label": "KV Store",
+      "subtitle": "Rate counters",
+      "icon": "ai-edge-kv",
+      "col": 3
+    }
+  ],
+  "edges": [
+    {
+      "from": "sources",
+      "to": "app",
+      "label": "Events"
+    },
+    {
+      "from": "dashboard",
+      "to": "app",
+      "label": "Queries"
+    },
+    {
+      "from": "app",
+      "to": "fn",
+      "label": "Rules Engine"
+    },
+    {
+      "from": "fn",
+      "to": "sql",
+      "label": "Read / write"
+    },
+    {
+      "from": "fn",
+      "to": "kv",
+      "label": "Increment"
+    }
+  ],
+  "groups": [
+    {
+      "id": "azion",
+      "label": "AZION PLATFORM",
+      "members": [
+        "app",
+        "fn",
+        "sql",
+        "kv"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "id": "tiered-cache-offload",
+  "title": "Tiered cache origin offload",
+  "description": "Add a Tiered Cache layer between Applications and your origin so fewer cache misses reach it.",
+  "category": "Delivery",
+  "theme": "dark",
+  "numbered": false,
+  "notes": "Conceptual architecture. Applications serve cached content with your TTLs and can serve stale content when the origin fails. Tiered Cache adds a cache layer for long-lived assets. Configure cache policies, cache keys, and origin access for your workload.",
+  "nodes": [
+    { "id": "users", "label": "Users", "subtitle": "Global audience", "icon": "pi-globe", "col": 0 },
+    { "id": "app", "label": "Applications", "subtitle": "Cache & TTLs", "icon": "ai-edge-application", "col": 1 },
+    { "id": "tiered", "label": "Tiered Cache", "subtitle": "Cache layer", "icon": "ai-tiered-cache", "col": 2 },
+    { "id": "origin", "label": "Origin server", "subtitle": "Your content", "icon": "pi-server", "col": 3 }
+  ],
+  "edges": [
+    { "from": "users", "to": "app", "label": "HTTPS" },
+    { "from": "app", "to": "tiered", "label": "Cache miss" },
+    { "from": "tiered", "to": "origin", "label": "Origin fetch" }
+  ],
+  "groups": [
+    { "id": "azion", "label": "AZION PLATFORM", "members": ["app", "tiered"] },
+    { "id": "origins", "label": "CONTENT SOURCES", "members": ["origin"] }
+  ]
+}

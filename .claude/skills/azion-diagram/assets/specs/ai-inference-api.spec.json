@@ -1,0 +1,23 @@
+{
+  "id": "ai-inference-api",
+  "title": "Serverless inference API",
+  "description": "Serve an OpenAI-compatible model API through Firewall and Applications without managing GPUs.",
+  "category": "AI",
+  "theme": "dark",
+  "numbered": false,
+  "notes": "Conceptual architecture. AI Inference exposes an OpenAI-compatible API and scales without GPU clusters. Configure WAF rules, API authentication, and the models you serve.",
+  "nodes": [
+    { "id": "clients", "label": "API clients", "subtitle": "OpenAI-compatible SDK", "icon": "pi-code", "col": 0 },
+    { "id": "fw", "label": "Firewall", "subtitle": "WAF rules", "icon": "ai-edge-firewall", "col": 1 },
+    { "id": "app", "label": "Applications", "subtitle": "Request routing", "icon": "ai-edge-application", "col": 2 },
+    { "id": "ai", "label": "AI Inference", "subtitle": "LLMs & embeddings", "icon": "ai-edge-ai", "col": 3 }
+  ],
+  "edges": [
+    { "from": "clients", "to": "fw", "label": "HTTPS" },
+    { "from": "fw", "to": "app", "label": "Allowed" },
+    { "from": "app", "to": "ai", "label": "Inference" }
+  ],
+  "groups": [
+    { "id": "azion", "label": "AZION PLATFORM", "members": ["fw", "app", "ai"] }
+  ]
+}

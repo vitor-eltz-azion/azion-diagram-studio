@@ -1,0 +1,25 @@
+{
+  "id": "serverless-app",
+  "title": "Full-stack application",
+  "description": "Run application logic with Functions and a distributed data layer.",
+  "category": "Compute",
+  "theme": "dark",
+  "numbered": false,
+  "notes": "Conceptual architecture. Configure authentication, caching rules, and origin access for your workload.",
+  "nodes": [
+    { "id": "users", "label": "Browser", "subtitle": "Client", "icon": "pi-desktop", "col": 0 },
+    { "id": "app", "label": "Applications", "subtitle": "Request routing", "icon": "ai-edge-application", "col": 1 },
+    { "id": "fn", "label": "Functions", "subtitle": "Application logic", "icon": "ai-edge-functions", "col": 2 },
+    { "id": "sql", "label": "SQL Database", "subtitle": "Relational data", "icon": "ai-edge-sql", "col": 3 },
+    { "id": "kv", "label": "KV Store", "subtitle": "Application state", "icon": "ai-edge-kv", "col": 3 }
+  ],
+  "edges": [
+    { "from": "users", "to": "app", "label": "HTTPS" },
+    { "from": "app", "to": "fn", "label": "Rules Engine" },
+    { "from": "fn", "to": "sql", "label": "Query" },
+    { "from": "fn", "to": "kv", "label": "Read / write" }
+  ],
+  "groups": [
+    { "id": "azion", "label": "AZION PLATFORM", "members": ["app", "fn", "sql", "kv"] }
+  ]
+}

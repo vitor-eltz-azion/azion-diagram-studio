@@ -1,0 +1,90 @@
+{
+  "id": "user-uploads",
+  "title": "User uploads with cached delivery",
+  "description": "Authorize uploads in Functions, store files in Object Storage, and deliver them through the cache.",
+  "category": "Storage",
+  "theme": "dark",
+  "numbered": false,
+  "notes": "Conceptual architecture. Functions check the session or upload token and per-user quotas in KV Store before writing to the bucket; access logic lives in your function code. Applications serve published files from Object Storage with caching. Configure bucket permissions and cache policies for your workload.",
+  "nodes": [
+    {
+      "id": "users",
+      "label": "Users",
+      "subtitle": "Web & mobile",
+      "icon": "pi-users",
+      "col": 0,
+      "row": -1
+    },
+    {
+      "id": "app",
+      "label": "Applications",
+      "subtitle": "Cache & route",
+      "icon": "ai-edge-application",
+      "col": 1,
+      "row": -1
+    },
+    {
+      "id": "storage",
+      "label": "Object Storage",
+      "subtitle": "User files",
+      "icon": "ai-edge-storage",
+      "col": 2,
+      "row": -1
+    },
+    {
+      "id": "fn",
+      "label": "Functions",
+      "subtitle": "Authorize uploads",
+      "icon": "ai-edge-functions",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "kv",
+      "label": "KV Store",
+      "subtitle": "Sessions & quotas",
+      "icon": "ai-edge-kv",
+      "col": 3,
+      "row": 1
+    }
+  ],
+  "edges": [
+    {
+      "from": "users",
+      "to": "app",
+      "label": "HTTPS"
+    },
+    {
+      "from": "app",
+      "to": "storage",
+      "label": "Cache miss"
+    },
+    {
+      "from": "app",
+      "to": "fn",
+      "label": "Uploads"
+    },
+    {
+      "from": "fn",
+      "to": "storage",
+      "label": "Write"
+    },
+    {
+      "from": "fn",
+      "to": "kv",
+      "label": "Check token"
+    }
+  ],
+  "groups": [
+    {
+      "id": "azion",
+      "label": "AZION PLATFORM",
+      "members": [
+        "app",
+        "fn",
+        "storage",
+        "kv"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "id": "real-user-monitoring",
+  "title": "Real user monitoring",
+  "description": "Collect latency and availability data from real sessions with Edge Pulse and query it from your dashboards.",
+  "category": "Observability",
+  "canvasWidth": 1120,
+  "canvasHeight": 600,
+  "theme": "dark",
+  "grid": true,
+  "numbered": false,
+  "snap": true,
+  "gridSize": 8,
+  "notes": "Conceptual architecture. The Edge Pulse JavaScript tag runs asynchronously in your pages and does not block loading. Query the collected navigation, latency, throughput, and availability data through the GraphQL API. Dashed arrows represent asynchronous data delivery.",
+  "updatedAt": "2026-10-16T17:41:05.666Z",
+  "nodes": [
+    {
+      "id": "browsers",
+      "label": "Browsers",
+      "subtitle": "Edge Pulse tag",
+      "icon": "pi-desktop",
+      "x": 56,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "neutral",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "pulse",
+      "label": "Edge Pulse",
+      "subtitle": "Real user data",
+      "icon": "ai-edge-pulse",
+      "x": 296,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "api",
+      "label": "API",
+      "subtitle": "GraphQL queries",
+      "icon": "ai-azion-api",
+      "x": 536,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "dash",
+      "label": "Dashboards",
+      "subtitle": "Your analytics",
+      "icon": "pi-chart-line",
+      "x": 864,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "neutral",
+      "shape": "card",
+      "locked": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "browsers-pulse",
+      "from": "browsers",
+      "to": "pulse",
+      "label": "RUM data",
+      "dashed": true,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "pulse-api",
+      "from": "pulse",
+      "to": "api",
+      "label": "Metrics",
+      "dashed": true,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "api-dash",
+      "from": "api",
+      "to": "dash",
+      "label": "Query results",
+      "dashed": true,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    }
+  ],
+  "groups": [
+    {
+      "id": "azion",
+      "label": "AZION PLATFORM",
+      "x": 256,
+      "y": 104,
+      "width": 472,
+      "height": 388,
+      "locked": false,
+      "moveChildren": true,
+      "tone": "neutral"
+    },
+    {
+      "id": "tools",
+      "label": "YOUR OBSERVABILITY STACK",
+      "x": 824,
+      "y": 104,
+      "width": 232,
+      "height": 388,
+      "locked": false,
+      "moveChildren": true,
+      "tone": "neutral"
+    }
+  ]
+}

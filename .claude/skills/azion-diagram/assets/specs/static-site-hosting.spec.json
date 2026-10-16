@@ -1,0 +1,25 @@
+{
+  "id": "static-site-hosting",
+  "title": "Static site & SPA hosting",
+  "description": "Serve a static site or SPA from Object Storage behind Firewall and cached Applications.",
+  "category": "Storage",
+  "theme": "dark",
+  "numbered": false,
+  "notes": "Conceptual architecture. Upload the site build to a bucket with any S3-compatible client, set the bucket as the Applications origin, and route API paths to Functions with Rules Engine. Configure WAF rules and cache policies for your workload.",
+  "nodes": [
+    { "id": "users", "label": "Users", "subtitle": "Web & mobile", "icon": "pi-users", "col": 0 },
+    { "id": "firewall", "label": "Firewall", "subtitle": "WAF rules", "icon": "ai-edge-firewall", "col": 1 },
+    { "id": "app", "label": "Applications", "subtitle": "Cache & route", "icon": "ai-edge-application", "col": 2 },
+    { "id": "storage", "label": "Object Storage", "subtitle": "Site build", "icon": "ai-edge-storage", "col": 3 },
+    { "id": "fn", "label": "Functions", "subtitle": "API routes", "icon": "ai-edge-functions", "col": 3 }
+  ],
+  "edges": [
+    { "from": "users", "to": "firewall", "label": "HTTPS" },
+    { "from": "firewall", "to": "app", "label": "Allowed" },
+    { "from": "app", "to": "storage", "label": "Static assets" },
+    { "from": "app", "to": "fn", "label": "Rules Engine" }
+  ],
+  "groups": [
+    { "id": "azion", "label": "AZION PLATFORM", "members": ["firewall", "app", "storage", "fn"] }
+  ]
+}

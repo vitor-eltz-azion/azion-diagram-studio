@@ -12,7 +12,7 @@ export const diagramSchema = z.object({
   title: z.string().min(1).max(80),
   description: z.string().max(180).default(''),
   category: z
-    .enum(['Delivery', 'Compute', 'Storage', 'Security', 'Observability'])
+    .enum(['Delivery', 'Compute', 'Storage', 'Data', 'AI', 'Security', 'Observability'])
     .default('Compute'),
   canvasWidth: z.number().int().min(640).max(4096).default(1120),
   canvasHeight: z.number().int().min(480).max(4096).default(600),

@@ -27,8 +27,8 @@ describe('Architecture templates', () => {
         expect(iconCatalog.some((icon) => icon.name === node.icon)).toBe(true)
         expect(node.x).toBeGreaterThanOrEqual(0)
         expect(node.y).toBeGreaterThanOrEqual(80)
-        expect(node.x + NODE_WIDTH).toBeLessThanOrEqual(WIDTH)
-        expect(node.y + NODE_HEIGHT).toBeLessThanOrEqual(HEIGHT - 64)
+        expect(node.x + NODE_WIDTH).toBeLessThanOrEqual(template.canvasWidth ?? WIDTH)
+        expect(node.y + NODE_HEIGHT).toBeLessThanOrEqual((template.canvasHeight ?? HEIGHT) - 64)
       }
       for (const edge of template.edges) {
         expect(ids).toContain(edge.from)
@@ -36,8 +36,8 @@ describe('Architecture templates', () => {
         expect(edge.from).not.toBe(edge.to)
       }
       for (const group of template.groups) {
-        expect(group.x + group.width).toBeLessThanOrEqual(WIDTH)
-        expect(group.y + group.height).toBeLessThanOrEqual(HEIGHT - 64)
+        expect(group.x + group.width).toBeLessThanOrEqual(template.canvasWidth ?? WIDTH)
+        expect(group.y + group.height).toBeLessThanOrEqual((template.canvasHeight ?? HEIGHT) - 64)
       }
     })
     for (const theme of ['dark', 'light'] as const) {

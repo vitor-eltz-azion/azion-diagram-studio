@@ -1,0 +1,23 @@
+{
+  "id": "object-delivery",
+  "title": "Media & object delivery",
+  "description": "Store assets once and deliver cached media to your users.",
+  "category": "Storage",
+  "theme": "dark",
+  "numbered": false,
+  "notes": "Conceptual architecture. Configure authentication, caching rules, and origin access for your workload.",
+  "nodes": [
+    { "id": "users", "label": "Users", "subtitle": "Media consumers", "icon": "pi-users", "col": 0 },
+    { "id": "app", "label": "Applications", "subtitle": "Cache & delivery", "icon": "ai-edge-application", "col": 1 },
+    { "id": "storage", "label": "Object Storage", "subtitle": "Images & video", "icon": "ai-edge-storage", "col": 2 },
+    { "id": "upload", "label": "Upload service", "subtitle": "Your backend", "icon": "pi-cloud", "col": 3 }
+  ],
+  "edges": [
+    { "from": "users", "to": "app", "label": "HTTPS" },
+    { "from": "app", "to": "storage", "label": "Cache miss" },
+    { "from": "upload", "to": "storage", "label": "Upload" }
+  ],
+  "groups": [
+    { "id": "azion", "label": "AZION PLATFORM", "members": ["app", "storage"] }
+  ]
+}

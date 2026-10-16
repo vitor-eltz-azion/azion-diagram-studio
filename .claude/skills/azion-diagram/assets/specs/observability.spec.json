@@ -1,0 +1,26 @@
+{
+  "id": "observability",
+  "title": "Logs & observability",
+  "description": "Stream application and security events into your analytics tools.",
+  "category": "Observability",
+  "theme": "dark",
+  "numbered": false,
+  "notes": "Configure Data Stream sources and a supported destination for each stream. Dashed arrows represent asynchronous log delivery.",
+  "nodes": [
+    { "id": "app", "label": "Applications", "subtitle": "Request logs", "icon": "ai-edge-application", "col": 0 },
+    { "id": "fw", "label": "Firewall", "subtitle": "Security events", "icon": "ai-edge-firewall", "col": 0 },
+    { "id": "stream", "label": "Data Stream", "subtitle": "Collect & forward", "icon": "ai-data-stream", "col": 1 },
+    { "id": "siem", "label": "Analytics / SIEM", "subtitle": "Your destination", "icon": "pi-chart-line", "col": 2 },
+    { "id": "archive", "label": "Log archive", "subtitle": "Storage endpoint", "icon": "pi-database", "col": 2 }
+  ],
+  "edges": [
+    { "from": "app", "to": "stream", "label": "Logs", "dashed": true },
+    { "from": "fw", "to": "stream", "label": "Events", "dashed": true },
+    { "from": "stream", "to": "siem", "label": "Stream", "dashed": true },
+    { "from": "stream", "to": "archive", "label": "Archive", "dashed": true }
+  ],
+  "groups": [
+    { "id": "azion", "label": "AZION PLATFORM", "members": ["app", "fw", "stream"] },
+    { "id": "tools", "label": "YOUR OBSERVABILITY STACK", "members": ["siem", "archive"] }
+  ]
+}

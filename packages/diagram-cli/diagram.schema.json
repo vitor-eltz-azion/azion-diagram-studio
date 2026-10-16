@@ -24,6 +24,8 @@
         "Delivery",
         "Compute",
         "Storage",
+        "Data",
+        "AI",
         "Security",
         "Observability"
       ]

@@ -1,0 +1,25 @@
+{
+  "id": "api-security",
+  "title": "API protection",
+  "description": "Inspect API traffic before it reaches your application and origin.",
+  "category": "Security",
+  "theme": "dark",
+  "numbered": false,
+  "notes": "Firewall inspection rejects disallowed requests. Only allowed traffic continues. Configure WAF policies and application authentication separately.",
+  "nodes": [
+    { "id": "users", "label": "API clients", "subtitle": "REST / GraphQL", "icon": "pi-code", "col": 0 },
+    { "id": "bots", "label": "Automated traffic", "subtitle": "Untrusted requests", "icon": "pi-cog", "col": 0 },
+    { "id": "fw", "label": "Firewall", "subtitle": "WAF rules", "icon": "ai-edge-firewall", "col": 1 },
+    { "id": "app", "label": "Applications", "subtitle": "Request routing", "icon": "ai-edge-application", "col": 2 },
+    { "id": "api", "label": "API origin", "subtitle": "Your services", "icon": "pi-server", "col": 3 }
+  ],
+  "edges": [
+    { "from": "users", "to": "fw", "label": "HTTPS" },
+    { "from": "bots", "to": "fw", "label": "Inspect" },
+    { "from": "fw", "to": "app", "label": "Allowed" },
+    { "from": "app", "to": "api", "label": "Forward" }
+  ],
+  "groups": [
+    { "id": "azion", "label": "AZION SECURITY & DELIVERY", "members": ["fw", "app"] }
+  ]
+}

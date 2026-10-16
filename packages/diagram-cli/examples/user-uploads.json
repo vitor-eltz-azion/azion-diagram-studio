@@ -1,0 +1,147 @@
+{
+  "id": "user-uploads",
+  "title": "User uploads with cached delivery",
+  "description": "Authorize uploads in Functions, store files in Object Storage, and deliver them through the cache.",
+  "category": "Storage",
+  "canvasWidth": 1120,
+  "canvasHeight": 600,
+  "theme": "dark",
+  "grid": true,
+  "numbered": false,
+  "snap": true,
+  "gridSize": 8,
+  "notes": "Conceptual architecture. Functions check the session or upload token and per-user quotas in KV Store before writing to the bucket; access logic lives in your function code. Applications serve published files from Object Storage with caching. Configure bucket permissions and cache policies for your workload.",
+  "updatedAt": "",
+  "nodes": [
+    {
+      "id": "users",
+      "label": "Users",
+      "subtitle": "Web & mobile",
+      "icon": "pi-users",
+      "x": 48,
+      "y": 140,
+      "width": 152,
+      "height": 96,
+      "tone": "neutral",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "app",
+      "label": "Applications",
+      "subtitle": "Cache & route",
+      "icon": "ai-edge-application",
+      "x": 288,
+      "y": 140,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "storage",
+      "label": "Object Storage",
+      "subtitle": "User files",
+      "icon": "ai-edge-storage",
+      "x": 528,
+      "y": 140,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "fn",
+      "label": "Functions",
+      "subtitle": "Authorize uploads",
+      "icon": "ai-edge-functions",
+      "x": 528,
+      "y": 348,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "kv",
+      "label": "KV Store",
+      "subtitle": "Sessions & quotas",
+      "icon": "ai-edge-kv",
+      "x": 856,
+      "y": 348,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "users-app",
+      "from": "users",
+      "to": "app",
+      "label": "HTTPS",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "app-storage",
+      "from": "app",
+      "to": "storage",
+      "label": "Cache miss",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "app-fn",
+      "from": "app",
+      "to": "fn",
+      "label": "Uploads",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "fn-storage",
+      "from": "fn",
+      "to": "storage",
+      "label": "Write",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "fn-kv",
+      "from": "fn",
+      "to": "kv",
+      "label": "Check token",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    }
+  ],
+  "groups": [
+    {
+      "id": "azion",
+      "label": "AZION PLATFORM",
+      "x": 248,
+      "y": 104,
+      "width": 816,
+      "height": 388,
+      "locked": false,
+      "moveChildren": true,
+      "tone": "neutral"
+    }
+  ]
+}

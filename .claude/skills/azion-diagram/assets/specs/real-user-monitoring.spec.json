@@ -1,0 +1,24 @@
+{
+  "id": "real-user-monitoring",
+  "title": "Real user monitoring",
+  "description": "Collect latency and availability data from real sessions with Edge Pulse and query it from your dashboards.",
+  "category": "Observability",
+  "theme": "dark",
+  "numbered": false,
+  "notes": "Conceptual architecture. The Edge Pulse JavaScript tag runs asynchronously in your pages and does not block loading. Query the collected navigation, latency, throughput, and availability data through the GraphQL API. Dashed arrows represent asynchronous data delivery.",
+  "nodes": [
+    { "id": "browsers", "label": "Browsers", "subtitle": "Edge Pulse tag", "icon": "pi-desktop", "col": 0 },
+    { "id": "pulse", "label": "Edge Pulse", "subtitle": "Real user data", "icon": "ai-edge-pulse", "col": 1 },
+    { "id": "api", "label": "API", "subtitle": "GraphQL queries", "icon": "ai-azion-api", "col": 2 },
+    { "id": "dash", "label": "Dashboards", "subtitle": "Your analytics", "icon": "pi-chart-line", "col": 3 }
+  ],
+  "edges": [
+    { "from": "browsers", "to": "pulse", "label": "RUM data", "dashed": true },
+    { "from": "pulse", "to": "api", "label": "Metrics", "dashed": true },
+    { "from": "api", "to": "dash", "label": "Query results", "dashed": true }
+  ],
+  "groups": [
+    { "id": "azion", "label": "AZION PLATFORM", "members": ["pulse", "api"] },
+    { "id": "tools", "label": "YOUR OBSERVABILITY STACK", "members": ["dash"] }
+  ]
+}

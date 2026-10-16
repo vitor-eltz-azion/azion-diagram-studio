@@ -1,0 +1,114 @@
+{
+  "id": "image-optimization",
+  "title": "On-demand images from storage",
+  "description": "Store original images once in Object Storage and deliver resized, converted variants with Image Processor.",
+  "category": "Storage",
+  "canvasWidth": 1120,
+  "canvasHeight": 600,
+  "theme": "dark",
+  "grid": true,
+  "numbered": false,
+  "snap": true,
+  "gridSize": 8,
+  "notes": "Conceptual architecture. Image Processor runs as an Applications module and transforms images through URL parameters, including WebP and AVIF conversion. Processed variants are cached. Configure Rules Engine, image parameters, and cache policies for your workload.",
+  "updatedAt": "2026-10-16T17:41:05.475Z",
+  "nodes": [
+    {
+      "id": "users",
+      "label": "Users",
+      "subtitle": "Web & mobile",
+      "icon": "pi-users",
+      "x": 104,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "neutral",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "app",
+      "label": "Applications",
+      "subtitle": "Cache & route",
+      "icon": "ai-edge-application",
+      "x": 344,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "images",
+      "label": "Image Processor",
+      "subtitle": "Resize & convert",
+      "icon": "pi-image",
+      "x": 584,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    },
+    {
+      "id": "storage",
+      "label": "Object Storage",
+      "subtitle": "Original images",
+      "icon": "ai-edge-storage",
+      "x": 824,
+      "y": 244,
+      "width": 152,
+      "height": 96,
+      "tone": "azion",
+      "shape": "card",
+      "locked": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "users-app",
+      "from": "users",
+      "to": "app",
+      "label": "HTTPS",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "app-images",
+      "from": "app",
+      "to": "images",
+      "label": "Transform",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    },
+    {
+      "id": "images-storage",
+      "from": "images",
+      "to": "storage",
+      "label": "Read original",
+      "dashed": false,
+      "routing": "orthogonal",
+      "arrow": "end",
+      "locked": false
+    }
+  ],
+  "groups": [
+    {
+      "id": "azion",
+      "label": "AZION PLATFORM",
+      "x": 304,
+      "y": 104,
+      "width": 712,
+      "height": 388,
+      "locked": false,
+      "moveChildren": true,
+      "tone": "neutral"
+    }
+  ]
+}

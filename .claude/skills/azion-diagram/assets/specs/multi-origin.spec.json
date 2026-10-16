@@ -1,0 +1,26 @@
+{
+  "id": "multi-origin",
+  "title": "Multi-origin architecture",
+  "description": "Connect a single delivery layer to multiple origin environments.",
+  "category": "Delivery",
+  "theme": "dark",
+  "numbered": false,
+  "notes": "Logical origin-selection view. Configure origins, balancing policy, and health checks for the intended routing behavior.",
+  "nodes": [
+    { "id": "users", "label": "Users", "subtitle": "Global audience", "icon": "pi-globe", "col": 0 },
+    { "id": "app", "label": "Applications", "subtitle": "Request routing", "icon": "ai-edge-application", "col": 1 },
+    { "id": "lb", "label": "Load Balancer", "subtitle": "Origin selection", "icon": "ai-load-balancer", "col": 2 },
+    { "id": "cloud", "label": "Cloud origin", "subtitle": "Primary origin", "icon": "pi-cloud", "col": 3 },
+    { "id": "dc", "label": "Data center", "subtitle": "Secondary origin", "icon": "pi-server", "col": 3 }
+  ],
+  "edges": [
+    { "from": "users", "to": "app", "label": "HTTPS" },
+    { "from": "app", "to": "lb", "label": "Origin request" },
+    { "from": "lb", "to": "cloud", "label": "Route" },
+    { "from": "lb", "to": "dc", "label": "Route" }
+  ],
+  "groups": [
+    { "id": "azion", "label": "AZION PLATFORM", "members": ["app", "lb"] },
+    { "id": "origins", "label": "ORIGIN ENVIRONMENTS", "members": ["cloud", "dc"] }
+  ]
+}
